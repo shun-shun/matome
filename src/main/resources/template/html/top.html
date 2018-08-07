@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<!-- Required meta tags -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<!-- CSS -->
+<link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
+<link href="../../assets/css/dashboard.css" rel="stylesheet">
+<link href="../../assets/css/datatables.css" rel="stylesheet">
+<link href="../../assets/css/header.css" rel="stylesheet">
+<link href="../../assets/css/top.css" rel="stylesheet">
+
+<!-- JavaScript -->
+<script src="../../assets/js/jquery-3.3.1.min.js"></script>
+<script src="../../assets/js/bootstrap.min.js"></script>
+<script src="../../assets/js/datatables.js"></script>
+<script src="../../assets/js/currency.js"></script>
+<script src="../../assets/js/popper.min.js"></script>
+<script src="../../assets/js/top.js"></script>
+<title>(。-G-)chan</title>
+</head>
+<body class="text">
+	<!-- Header -->
+	{{> header.html}}
+	<!-- Container -->
+	<div class="container-fluid">
+		<div class="row">
+			<!-- Navigation -->
+			{{> sidebarNavigation.html}}
+			<!-- Main -->
+			<main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+			<!-- Message Area  --> {{> messageArea.html}}
+			<div class="starter-template">
+				<div class="row">
+					<div class="col-sm-6 d-none d-md-block">
+						<h1 class="title">新着</h1>
+					</div>
+				</div>
+				<div class="bg-white rounded box-shadow">
+					<div class="table-responsive-xs">
+						<table class="table table-bordered display entry datatables"
+							id="articlesTable" style="width: 100%;" role="grid">
+							<thead>
+								<tr role="d-flex" class="bg-light text-dark">
+									<th class="col-sm-5">記事</th>
+									<th class="col-sm-1 d-none d-sm-table-cell">投稿日時</th>
+									<th class="col-sm-4 d-none d-sm-table-cell">リンク先</th>
+									<th class="col-sm-2 text-nowrap">お気に入り</th>
+								</tr>
+							</thead>
+							<tbody>
+								{{#newArrivalsDto}}
+								<tr role="d-flex" class="bg-light text-dark">
+								    {{#targetSelf}}
+								    <td class="col-sm-5" align="left"><a href="{{link}}" target="_self">{{title}}</a></td>
+								    {{/targetSelf}}
+								    {{^targetSelf}}
+									<td class="col-sm-5" align="left"><a href="{{link}}" target="_blank">{{title}}</a></td>
+								    {{/targetSelf}}
+									<td class="col-sm-1 d-none d-sm-table-cell text-nowrap " align="left">{{publishedDate}}</td>
+									<td class="col-sm-4 d-none d-sm-table-cell text-nowrap ">{{diestinationName}}</td>
+									<td class="col-sm-2">
+									   <form action="/" method="post">
+									    <input type="hidden" name="destinationId" value="{{destinationId}}">
+									    <input type="hidden" name="articleId" value="{{articleId}}">
+										<input type="submit" class="btn btn-outline-dark" value="登録">
+									   </form>
+									</td>
+								</tr>
+								{{/newArrivalsDto}}
+							</tbody>
+						</table>
+					</div>
+
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+								{{#pageList}}
+								<li class="page-item"><a class="page-link" href="/?page={{.}}">{{.}}</a></li>
+								{{/pageList}}
+						</ul>
+					</nav>
+				</div>
+			</div>
+			</main>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+    <changeSet id="1" author="">
+        <createTable tableName="M_Category">
+            <column name="categoryId" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="categoryName" type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="M_Providing_Destination">
+            <column name="destinationId" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="categoryId" type="int">
+                <constraints nullable="false" foreignKeyName="fk_MCategory_categoryId_By_M_Providing_Destination_categoryId" referencedTableName="M_Category" referencedColumnNames="categoryId"/>
+            </column>
+            <column name="diestinationName" type="varchar(30)">
+                <constraints nullable="false"/>]
+            </column>
+            <column name="url" type="varchar(200)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="rssUrl" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="atomUrl" type="varchar(200)">
+                <constraints nullable="true"/>
+            </column>
+        </createTable>
+
+        <createTable tableName="T_Articles">
+            <column name="destinationId" type="int">
+                <constraints primaryKey="true" nullable="false"
+                foreignKeyName="fk_M_Providing_Destination_destinationId_By_T_Articles_destinationId"
+                referencedTableName="M_Providing_Destination" referencedColumnNames="destinationId"/>
+            </column>
+            <column name="articleId" type="int" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="title" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="author" type="varchar(50)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="link" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="uri" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contributors" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="enclosures" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="links" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contentType" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="contentValue" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="descriptionType" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="descriptionValue" type="varchar(100)">
+                <constraints nullable="true"/>
+            </column>
+            <column name="publishedDate" type="timestamp">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updatedDate" type="timestamp" />
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="">
+    <modifyDataType columnName="contentValue"
+            newDataType="varchar(10000)"
+            tableName="T_Articles"/>
+    <modifyDataType columnName="descriptionValue"
+            newDataType="varchar(10000)"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="3" author="">
+    <modifyDataType columnName="enclosures"
+            newDataType="varchar(10000)"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="4" author="">
+    <modifyDataType columnName="link"
+            newDataType="varchar(1000)"
+            tableName="T_Articles"/>
+    <modifyDataType columnName="uri"
+            newDataType="varchar(1000)"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="5" author="">
+    <modifyDataType columnName="contentValue"
+            newDataType="varchar(100000)"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="6" author="">
+    <dropNotNullConstraint
+            columnDataType="timestamp"
+            columnName="publishedDate"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="7" author="">
+    <modifyDataType columnName="title"
+            newDataType="varchar(1000)"
+            tableName="T_Articles"/>
+    </changeSet>
+
+    <changeSet id="8" author="">
+    <addColumn tableName="M_Providing_Destination">
+        <column name="Last-Modified" type="varchar(35)" />
+    </addColumn>
+    </changeSet>
+
+    <changeSet id="9" author="">
+     <addColumn tableName="M_Providing_Destination">
+        <column name="etag" type="varchar(36)"/>
+    </addColumn>
+    </changeSet>
+
+    <changeSet id="10" author="">
+    <renameColumn columnDataType="varchar(35)"
+            newColumnName="lastModified"
+            oldColumnName="Last-Modified"
+            tableName="M_Providing_Destination"/>
+    </changeSet>
+
+    <changeSet id="11" author="">
+    <modifyDataType columnName="lastModified"
+            newDataType="TIMESTAMP WITH TIME ZONE"
+            tableName="M_Providing_Destination"/>
+    </changeSet>
+
+    <changeSet id="12" author="">
+    <modifyDataType columnName="etag"
+            newDataType="varchar(100)"
+            tableName="M_Providing_Destination"/>
+    </changeSet>
+
+    <changeSet id="13" author="">
+        <createIndex indexName="idxTitle"
+                tableName="T_Articles">
+            <column name="Title" type="varchar(1000)"/>
+        </createIndex>
+    </changeSet>
+
+    <changeSet id="14" author="">
+    <addColumn tableName="T_Articles">
+        <column name="insertDate" type="timeStamp" />
+    </addColumn>
+    </changeSet>
+</databaseChangeLog>
