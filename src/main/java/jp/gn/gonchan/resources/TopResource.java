@@ -45,6 +45,10 @@ public class TopResource extends AbstractResource {
     @Inject
     CokkieLogic cokkieLogic;
 
+    public TopResource() {
+        start();
+    }
+
     /**
      * トップ画面表示に必要な情報を取得し、トップ画面を表示する.
      */
@@ -89,5 +93,23 @@ public class TopResource extends AbstractResource {
         }
         NewCookie cookies = cokkieLogic.createCookie(new CokkieInfo(cokkieArticleList));
         return Response.seeOther(URI.create("/")).cookie(cookies).build();
+    }
+
+    private void start() {
+        final long timeInterval = 1000 * 60 * 20;
+        Runnable runnable = new Runnable() {
+            public void run() {
+                while (true) {
+                    rssLogic.registerAllRss();
+                    try {
+                        Thread.sleep(timeInterval);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        };
+        Thread thread = new Thread(runnable);
+        thread.start();
     }
 }
