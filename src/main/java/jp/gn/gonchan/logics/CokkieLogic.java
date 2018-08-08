@@ -8,7 +8,6 @@ import com.esotericsoftware.kryo.io.Input;
 import com.esotericsoftware.kryo.io.Output;
 import com.esotericsoftware.kryo.serializers.FieldSerializer;
 import org.apache.commons.lang3.ArrayUtils;
-import org.assertj.core.util.VisibleForTesting;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -45,7 +44,6 @@ public class CokkieLogic {
         return deserializeCokkieInfo(binary);
     }
 
-    @VisibleForTesting
     byte[] serializeCokkieInfo(CokkieInfo loginInfo) {
         Kryo kryo = createKryoInstance();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -55,7 +53,6 @@ public class CokkieLogic {
         return baos.toByteArray();
     }
 
-    @VisibleForTesting
     CokkieInfo deserializeCokkieInfo(byte[] binary) {
         Kryo kryo = createKryoInstance();
         try (Input input = new Input(new ByteArrayInputStream(binary))) {
@@ -64,7 +61,6 @@ public class CokkieLogic {
         }
     }
 
-    @VisibleForTesting
     Kryo createKryoInstance() {
         final Kryo instance = new Kryo();
         final FieldSerializer<CokkieInfo> serializer = new FieldSerializer<>(instance, CokkieInfo.class);
