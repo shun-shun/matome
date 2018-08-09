@@ -35,7 +35,17 @@ public class FavoriteResource extends AbstractResource {
     @GET
     @CacheControl(noCache = true, noStore = true)
     public Response displayTopScreen(@Context CokkieInfo cokkieInfo) {
-        AbstractDisplayDto displayDto = null;
+        AbstractDisplayDto displayDto = new AbstractDisplayDto() {
+
+            @Override
+            public String toString() {
+                StringBuilder builder = new StringBuilder();
+                builder.append("AbstractDisplayDto [getNavDto=");
+                builder.append(super.getNavDto());
+                builder.append("]");
+                return builder.toString();
+            }
+        };
         if (cokkieInfo != null && cokkieInfo.getCokkieArticleDto() != null) {
             displayDto = fetchCookieInfo(cokkieInfo);
         }

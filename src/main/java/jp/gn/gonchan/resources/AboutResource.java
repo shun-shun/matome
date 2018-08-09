@@ -30,7 +30,17 @@ public class AboutResource extends AbstractResource {
     @GET
     @CacheControl(noCache = true, noStore = true)
     public Response displayTopScreen(@Context CokkieInfo cokkieInfo) {
-        AbstractDisplayDto displayDto = null;
+        AbstractDisplayDto displayDto = new AbstractDisplayDto() {
+
+            @Override
+            public String toString() {
+                StringBuilder builder = new StringBuilder();
+                builder.append("AbstractDisplayDto [getNavDto=");
+                builder.append(super.getNavDto());
+                builder.append("]");
+                return builder.toString();
+            }
+        };
         setDisplayDto(displayDto, cokkieInfo);
         return Response.ok(templateLogic.getHtml("template/html/about.html", displayDto)).build();
     }

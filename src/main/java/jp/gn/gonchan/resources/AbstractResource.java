@@ -14,19 +14,6 @@ public abstract class AbstractResource {
     AbstractLogic abstractLogic;
 
     public void setDisplayDto(AbstractDisplayDto displayDto, CokkieInfo cokkieInfo) {
-        if (displayDto == null) {
-            displayDto = new AbstractDisplayDto() {
-
-                @Override
-                public String toString() {
-                    StringBuilder builder = new StringBuilder();
-                    builder.append("AbstractDisplayDto [getNavDto=");
-                    builder.append(super.getNavDto());
-                    builder.append("]");
-                    return builder.toString();
-                }
-            };
-        }
         setNavigationHeaderDto(displayDto);
         setSidebarDto(displayDto, cokkieInfo);
     }

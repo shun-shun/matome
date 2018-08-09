@@ -40,17 +40,18 @@
 				{{#blogFourListDtos}}
 					<div class="row">
 					   {{#fourDestinationList}}
-						<div class="col-sm-4 col-md-3">
+						<div class="col-sm-6 col-md-4 col-lg-2">
 							<div class="card img-thumbnail">
+								<span class="border border-dark">
 								<img class="card-img-top" alt="100%x180"
 									data-src="holder.js/100px180"
 									src="http://favicon.hatena.ne.jp/?url={{url}}"
 									data-holder-rendered="true"
 									style="height: 180px; width: 100%; display: block;">
+								</span>
 								<div class="card-body px-2 py-3">
 								    <a href="{{url}}">
-									<h5 class="card-title">{{DiestinationName}}</h5></a>
-									<p class="card-text">説明</p>
+									<h6 class="card-title">{{DiestinationName}}</h6></a>
 									<p class="mb-0">
 										<a href="/new-arrivals-by-blog?dest={{DestinationId}}&page=1" class="btn btn-primary btn-sm">新着記事</a> <a href="{{url}}"
 											class="btn btn-secondary btn-sm" target="_blank">サイト</a>

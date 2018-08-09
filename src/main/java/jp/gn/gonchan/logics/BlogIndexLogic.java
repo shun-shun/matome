@@ -17,7 +17,7 @@ public class BlogIndexLogic {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogIndexLogic.class);
 
-    private static final int BLOG_INDEX_COLUMN_NUMBER = 4;
+    private static final int BLOG_INDEX_COLUMN_NUMBER = 6;
 
     @Inject
     MProvidingDestinationDao providingDestinationDao;
