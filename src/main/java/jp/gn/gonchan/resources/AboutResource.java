@@ -17,7 +17,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/about")
 @Singleton
-public class AboutResource extends AbstractResource {
+public class AboutResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(AboutResource.class);
 

@@ -32,7 +32,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/")
 @Singleton
-public class TopResource extends AbstractResource {
+public class TopResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(TopResource.class);
 

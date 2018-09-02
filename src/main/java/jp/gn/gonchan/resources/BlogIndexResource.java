@@ -18,7 +18,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/blogIndex")
 @Singleton
-public class BlogIndexResource extends AbstractResource {
+public class BlogIndexResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(BlogIndexResource.class);
 

@@ -30,7 +30,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/settings")
 @Singleton
-public class SettingsResource extends AbstractResource {
+public class SettingsResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(SettingsResource.class);
 

@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/new-arrivals-by-blog")
 @Singleton
-public class NewArrivalsByBlogResource extends AbstractResource {
+public class NewArrivalsByBlogResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(NewArrivalsByBlogResource.class);
 

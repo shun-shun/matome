@@ -19,7 +19,7 @@ import javax.ws.rs.core.Response;
 
 @Path("/favorite")
 @Singleton
-public class FavoriteResource extends AbstractResource {
+public class FavoriteResource extends AbstractResources {
 
     private static final Logger logger = LoggerFactory.getLogger(FavoriteResource.class);
 
