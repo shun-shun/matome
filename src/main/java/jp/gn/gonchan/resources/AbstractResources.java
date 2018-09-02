@@ -14,26 +14,26 @@ public abstract class AbstractResources {
     AbstractLogic abstractLogic;
 
     public void setDisplayDto(AbstractDisplayDto displayDto, CokkieInfo cokkieInfo) {
-        setNavigationHeaderDto(displayDto);
-        setSidebarDto(displayDto, cokkieInfo);
+        setNavigationHeaderDto(displayDto, cokkieInfo);
+        setSidebarDto(displayDto);
     }
 
-    private void setNavigationHeaderDto(AbstractDisplayDto displayDto) {
-        NavigationHeaderDto headerDto = new NavigationHeaderDto();
+    private void setSidebarDto(AbstractDisplayDto displayDto) {
+        SidebarDto sidebarDto = new SidebarDto();
         final int pgAllCount = abstractLogic.getPDAllCount();
         final int articleCount = abstractLogic.getTodayArticles();
-        headerDto.setRegisteredBlogCount(pgAllCount);
-        headerDto.setNewArrivalArticleCount(articleCount);
-        displayDto.setNavDto(headerDto);
+        sidebarDto.setRegisteredBlogCount(pgAllCount);
+        sidebarDto.setNewArrivalArticleCount(articleCount);
+        displayDto.setSidebarDto(sidebarDto);
     }
 
-    private void setSidebarDto(AbstractDisplayDto displayDto, CokkieInfo cokkieInfo) {
-        SidebarDto sidebarDto = new SidebarDto();
+    private void setNavigationHeaderDto(AbstractDisplayDto displayDto, CokkieInfo cokkieInfo) {
+        NavigationHeaderDto headerDto = new NavigationHeaderDto();
         if (cokkieInfo != null && cokkieInfo.getCokkieArticleDto() != null) {
             final int favoritArticleCount = cokkieInfo.getCokkieArticleDto().size();
-            sidebarDto.setFavoritArticleCount(favoritArticleCount);
+            headerDto.setFavoritArticleCount(favoritArticleCount);
         }
-        displayDto.setSidebarDto(sidebarDto);
+        displayDto.setNavDto(headerDto);
     }
 
 }

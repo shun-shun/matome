@@ -2,23 +2,34 @@ package jp.gn.gonchan.dto;
 
 public class SidebarDto {
 
-    private int favoritArticleCount;
+    private int newArrivalArticleCount;
 
-    public int getFavoritArticleCount() {
-        return favoritArticleCount;
+    private int registeredBlogCount;
+
+    public int getNewArrivalArticleCount() {
+        return newArrivalArticleCount;
     }
 
-    public void setFavoritArticleCount(int favoritArticleCount) {
-        this.favoritArticleCount = favoritArticleCount;
+    public void setNewArrivalArticleCount(int newArrivalArticleCount) {
+        this.newArrivalArticleCount = newArrivalArticleCount;
+    }
+
+    public int getRegisteredBlogCount() {
+        return registeredBlogCount;
+    }
+
+    public void setRegisteredBlogCount(int registeredBlogCount) {
+        this.registeredBlogCount = registeredBlogCount;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("SidebarDto [favoritArticleCount=");
-        builder.append(favoritArticleCount);
+        builder.append("NavigationHeaderDto [newArrivalArticleCount=");
+        builder.append(newArrivalArticleCount);
+        builder.append(", registeredBlogCount=");
+        builder.append(registeredBlogCount);
         builder.append("]");
         return builder.toString();
     }
-
 }
