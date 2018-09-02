@@ -12,21 +12,21 @@ import java.sql.Timestamp;
 import java.util.List;
 
 @RegisterMapperFactory(BeanMapperFactory.class)
-public abstract class MProvidingDestinationDao {
+public interface MProvidingDestinationDao {
 
     @SqlQuery("SELECT * FROM M_PROVIDING_DESTINATION")
-    public abstract List<ProvidingDestination> selectAllDistination();
+    public List<ProvidingDestination> selectAllDistination();
 
     @SqlQuery("SELECT * FROM M_PROVIDING_DESTINATION ORDER BY destinationId ASC LIMIT 10")
-    public abstract List<ProvidingDestination> selectDistinationByLimit();
+    public List<ProvidingDestination> selectDistinationByLimit();
 
     @SqlQuery("SELECT COUNT(*) FROM M_PROVIDING_DESTINATION")
-    public abstract int selectAllCount();
+    public int selectAllCount();
 
 
     @SqlUpdate("UPDATE M_PROVIDING_DESTINATION SET "
             + "lastModified = :lastModified , etag = :etag WHERE destinationId = :destinationId ")
-    public abstract void updateModified(@Bind("lastModified") Timestamp lastModified, @Bind("etag") String etag,
+    public void updateModified(@Bind("lastModified") Timestamp lastModified, @Bind("etag") String etag,
             @Bind("destinationId") int destinationId);
 
 }
