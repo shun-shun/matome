@@ -8,7 +8,7 @@ import jp.gn.gonchan.logics.AbstractLogic;
 
 import javax.inject.Inject;
 
-public abstract class AbstractResource {
+public abstract class AbstractResources {
 
     @Inject
     AbstractLogic abstractLogic;
