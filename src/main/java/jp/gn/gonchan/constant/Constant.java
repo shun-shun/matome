@@ -2,7 +2,7 @@ package jp.gn.gonchan.constant;
 
 public class Constant {
 
-    public static final int DEFAULT_DISPLAY_COUNT = 500;
+    public static final int DEFAULT_DISPLAY_COUNT = 50;
 
     public static final String COOKIE_NAME = "(. -G -)Chan";
 
