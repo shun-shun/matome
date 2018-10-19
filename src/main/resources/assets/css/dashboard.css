@@ -68,6 +68,8 @@ body {
 
 [role="main"] {
   padding-top: 48px; /* Space for fixed navbar */
+  padding-right: 2px;
+  padding-left: 2px;
 }
 
 /*
