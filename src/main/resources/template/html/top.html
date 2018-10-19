@@ -3,7 +3,10 @@
 <head>
 <!-- Required meta tags -->
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="(。-G-)chan">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
 <!-- CSS -->
 <link href="../../assets/css/bootstrap.min.css" rel="stylesheet">
 <link href="../../assets/css/dashboard.css" rel="stylesheet">
@@ -15,10 +18,9 @@
 <script src="../../assets/js/jquery-3.3.1.min.js"></script>
 <script src="../../assets/js/bootstrap.min.js"></script>
 <script src="../../assets/js/datatables.js"></script>
-<script src="../../assets/js/currency.js"></script>
 <script src="../../assets/js/popper.min.js"></script>
 <script src="../../assets/js/top.js"></script>
-<title>(。-G-)chan</title>
+<title>(。-G-)chanのまとめ</title>
 </head>
 <body class="text">
 	<!-- Header -->
@@ -29,7 +31,7 @@
 			<!-- Navigation -->
 			{{> sidebarNavigation.html}}
 			<!-- Main -->
-			<main role="main" class="col-md-10 ml-sm-auto col-lg-10 px-4">
+			<main role="main" class="col-md-10 ml-sm-auto col-lg-10">
 			<!-- Message Area  --> {{> messageArea.html}}
 			<div class="starter-template">
 				<div class="row">
@@ -73,8 +75,8 @@
 						</table>
 					</div>
 
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
+					<nav aria-label="Page navigation">
+						<ul class="pagination justify-content-center">
 								{{#pageList}}
 								<li class="page-item"><a class="page-link" href="/?page={{.}}">{{.}}</a></li>
 								{{/pageList}}
