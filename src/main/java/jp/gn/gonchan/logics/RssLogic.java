@@ -49,6 +49,8 @@ import javax.inject.Inject;
 
 public class RssLogic {
 
+    private static final int PAGENATION_STAYING_AROUND = 4;
+
     private static final Logger logger = LoggerFactory.getLogger(RssLogic.class);
 
     @Inject
@@ -300,7 +302,7 @@ public class RssLogic {
     public AbstractDisplayDto getNewArrivalsByBlog(CokkieInfo cokkieInfo, int destinationId, int page) {
         final int totalCount = articleDao.selectTotalByDestination(destinationId);
         final int pageListCount = totalCount / Constant.DEFAULT_DISPLAY_COUNT;
-        List<Integer> pageList = makePageList(pageListCount);
+        List<Integer> pageList = makePageList(pageListCount, page);
         NewArrivalsDisplayDto dto = new NewArrivalsDisplayDto();
         dto.setPageList(pageList);
 
@@ -324,7 +326,7 @@ public class RssLogic {
 
         final int totalCount = getTotalTodayArticle(startTimeStamp, endTimeStamp);
         final int pageListCount = totalCount / Constant.DEFAULT_DISPLAY_COUNT;
-        List<Integer> pageList = makePageList(pageListCount);
+        List<Integer> pageList = makePageList(pageListCount, page);
 
         NewArrivalsDisplayDto dto = new NewArrivalsDisplayDto();
         dto.setPageList(pageList);
@@ -340,10 +342,18 @@ public class RssLogic {
         return dto;
     }
 
-    private List<Integer> makePageList(final int pageListCount) {
+    private List<Integer> makePageList(final int pageListCount, final int stayingPage) {
         List<Integer> pageList = new ArrayList<>();
-        for (int i = 1; i <= pageListCount; i++) {
-            pageList.add(i);
+        int index = stayingPage - PAGENATION_STAYING_AROUND;
+        if (index < 1) {
+            index = 1;
+        }
+        int end = stayingPage + PAGENATION_STAYING_AROUND;
+        if (end > pageListCount) {
+            end = pageListCount;
+        }
+        for (; index <= end; index++) {
+            pageList.add(index);
         }
         return pageList;
     }
